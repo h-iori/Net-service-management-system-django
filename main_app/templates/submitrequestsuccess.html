@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Success</title>
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+
+ <!-- Font Awesome CSS -->
+ <link rel="stylesheet" href="{% static 'css/all.min.css'%}">
+
+ <!-- Custome CSS -->
+ <link rel="stylesheet" href="{% static 'css/custom.css'%}">
+</head>
+
+<body>
+    <div class="ml-5 mt-5">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Request ID</th>
+                    <td>{{ submit_request.request_id }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ submit_request.requester_name }}</td>
+                </tr>
+                <tr>
+                    <th>Email ID</th>
+                    <td>{{ submit_request.requester_email }}</td>
+                </tr>
+                <tr>
+                    <th>Request Info</th>
+                    <td>{{ submit_request.request_info }}</td>
+                </tr>
+                <tr>
+                    <th>Request Description</th>
+                    <td>{{ submit_request.request_desc }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form class="d-print-none">
+                            <input class="btn btn-danger" type="button" value="Print" onclick="window.print()">
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Display error message if any -->
+    {% if error_message %}
+    <div class="alert alert-danger mt-3" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/all.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <style>
+        .alert {
+            margin-bottom: 0 !important;
+        }
+
+        .shadow-lg {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container pt-5" id="registration">
+        <h2 class="text-center">Create an Account</h2>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-6 offset-md-3">
+                <form action="{% url 'register' %}" class="shadow-lg p-4" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <i class="fas fa-user"></i><label for="name" class="pl-2 font-weight-bold">Name</label><input
+                            type="text" class="form-control" id="uname" required placeholder="Name" name="rName">
+                    </div>
+
+                    <script>
+                        // Get the input element
+                        var inputName = document.getElementById("uname");
+                      
+                        // Add event listener for input event
+                        inputName.addEventListener("input", function(event) {
+                          // Get the entered value
+                          var inputValue = event.target.value;
+                      
+                          // Regular expression to allow only characters
+                          var regex = /^[a-zA-Z]*$/;
+                      
+                          // Test if the input value matches the regular expression
+                          if (!regex.test(inputValue)) {
+                            // If not, clear the input value
+                            event.target.value = "";
+                          }
+                        });
+                      </script>
+                    <div class="form-group">
+                        <i class="fas fa-user"></i><label for="email" class="pl-2 font-weight-bold">Email</label><input
+                            type="email" class="form-control" id="uemail" required placeholder="Email" name="rEmail">
+                        <!--Add text-white below if want text color white-->
+                        <small class="form-text">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-key"></i><label for="pass" class="pl-2 font-weight-bold">New
+                            Password</label><input type="password" class="form-control" id="upassword" required
+                            placeholder="Password" name="rPassword">
+                    </div>
+                    <button type="submit"
+                        class="btn btn-danger mt-5 btn-block shadow-sm font-weight-bold" name="rSignup">Sign Up</button>
+                    {% if error_message %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+                    <em style="font-size:10px;">Note - By clicking Sign Up, you agree to our Terms, Data
+                        Policy and Cookie Policy.</em>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
